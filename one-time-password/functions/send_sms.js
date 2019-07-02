@@ -1,4 +1,5 @@
 const request = require('request')
+const functions = require('firebase-functions')
 
 module.exports = function (phone, message) {
   return new Promise((resolve, reject) => {
@@ -16,7 +17,7 @@ module.exports = function (phone, message) {
 
     const options = {
       headers: {
-        'authkey': '207635AO5Bqcwu5ac50200',
+        'authkey': functions.config().msg91.authkey,
         'Content-Type': 'application/json'
       },
       method: 'POST',
