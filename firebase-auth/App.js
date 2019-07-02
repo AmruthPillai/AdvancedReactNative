@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
+import SignUpForm from './src/components/SignUpForm';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <SignUpForm />
     </View>
   );
 }
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: StatusBar.currentHeight,
+    padding: 20
   },
 });
