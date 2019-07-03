@@ -1,5 +1,6 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, ActivityIndicator, AsyncStorage } from 'react-native'
 import Slides from '../components/Slides'
 
 const SLIDE_DATA = [
@@ -18,8 +19,20 @@ const SLIDE_DATA = [
 ]
 
 export default class WelcomeScreen extends Component {
+  state = { token: null }
+
   static navigationOptions = {
     tabBarVisible: false
+  }
+
+  async componentDidMount() {
+    let token = await AsyncStorage.getItem('fb_token')
+
+    if (token) {
+      this.props.navigation.navigate('map')
+    } else {
+      this.setState({ token: false })
+    }
   }
 
   onSlidesComplete = () => {
@@ -27,6 +40,12 @@ export default class WelcomeScreen extends Component {
   }
 
   render() {
+    if (_.isNull(this.state.token)) {
+      return <ActivityIndicator
+        size='large'
+        style={styles.flexCenter} />
+    }
+
     return (
       <View style={styles.container}>
         <Slides
@@ -40,5 +59,10 @@ export default class WelcomeScreen extends Component {
 const styles = {
   container: {
     flex: 1
+  },
+  flexCenter: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 }

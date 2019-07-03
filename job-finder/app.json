@@ -15,6 +15,9 @@
     "facebookAppId": "318033309072913",
     "facebookDisplayName": "Job Finder",
     "facebookScheme": "fb318033309072913",
+    "androidStatusBar": {
+      "barStyle": "light-content"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, StatusBar, AsyncStorage } from 'react-native'
 import { Provider } from 'react-redux'
 import store from './src/store'
 import {
@@ -20,6 +20,7 @@ const MainNavigator = createBottomTabNavigator({
   welcome: { screen: WelcomeScreen },
   auth: { screen: AuthScreen },
   main: {
+    navigationOptions: { tabBarVisible: false },
     screen: createBottomTabNavigator({
       map: { screen: MapScreen },
       deck: { screen: DeckScreen },
@@ -36,6 +37,10 @@ const MainNavigator = createBottomTabNavigator({
 const AppContainer = createAppContainer(MainNavigator)
 
 export default class App extends Component {
+  componentDidMount() {
+    StatusBar.setBarStyle('light-content')
+  }
+
   render() {
     return (
       <Provider store={store}>
