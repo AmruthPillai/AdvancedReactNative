@@ -30,6 +30,9 @@
       "**/*"
     ],
     "ios": {
+      "config": {
+        "googleMapsApiKey": "AIzaSyCyRV5UBiVUq_RGvb0yFdT2jfk0laUoULw"
+      },
       "supportsTablet": true,
       "bundleIdentifier": "ai.dhiyo.mobile"
     },
