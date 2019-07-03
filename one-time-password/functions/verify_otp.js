@@ -13,15 +13,17 @@ module.exports = function (req, res) {
   admin.auth().getUser(phone)
     .then(() => {
       const ref = admin.database().ref(`users/${phone}`)
-      ref.on('value', snapshot => {
+      ref.once('value', async (snapshot) => {
         const user = snapshot.val()
+
         if (user.code !== code || !user.codeValid) {
           return res.status(422).send({ error: 'Invalid OTP' })
         }
 
-        ref.update({ codeValid: false })
-        admin.auth().createCustomToken(phone)
-          .then((token) => res.send({ token }))
+        await ref.update({ codeValid: false })
+        const token = await admin.auth().createCustomToken(phone)
+
+        return res.send({ token })
       })
     })
     .catch((err) => res.status(422).send({ error: err }))
