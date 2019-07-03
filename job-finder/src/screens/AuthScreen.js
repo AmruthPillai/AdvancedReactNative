@@ -1,27 +1,33 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { View, AsyncStorage } from 'react-native'
+import { connect } from 'react-redux'
+import { facebookLogin } from '../actions'
 
-export default class AuthScreen extends Component {
+class AuthScreen extends Component {
+  static navigationOptions = {
+    tabBarVisible: false
+  }
+
+  componentDidMount() {
+    this.props.facebookLogin()
+    AsyncStorage.removeItem('fb_token')
+  }
+
   render() {
     return (
-      <View style={styles.statusBarHeight}>
-        <Text>AuthScreen</Text>
-        <Text>AuthScreen</Text>
-        <Text>AuthScreen</Text>
-        <Text>AuthScreen</Text>
-        <Text>AuthScreen</Text>
-        <Text>AuthScreen</Text>
-        <Text>AuthScreen</Text>
-        <Text>AuthScreen</Text>
-        <Text>AuthScreen</Text>
-        <Text>AuthScreen</Text>
-      </View>
+      <View style={styles.container} />
     )
   }
 }
 
 const styles = {
-  statusBarHeight: {
+  container: {
     marginTop: Expo.Constants.statusBarHeight
   }
 }
+
+const mapDispatchToProps = {
+  facebookLogin
+}
+
+export default connect(null, mapDispatchToProps)(AuthScreen)

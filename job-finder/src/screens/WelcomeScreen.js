@@ -1,27 +1,44 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
+import Slides from '../components/Slides'
+
+const SLIDE_DATA = [
+  {
+    text: 'Welcome to Job Finder',
+    color: '#0d47a1'
+  },
+  {
+    text: 'We will help you get a local job',
+    color: '#1565c0'
+  },
+  {
+    text: 'Just set your location and swipe away',
+    color: '#1976d2'
+  }
+]
 
 export default class WelcomeScreen extends Component {
+  static navigationOptions = {
+    tabBarVisible: false
+  }
+
+  onSlidesComplete = () => {
+    this.props.navigation.navigate('auth')
+  }
+
   render() {
     return (
-      <View style={styles.statusBarHeight}>
-        <Text>WelcomeScreen</Text>
-        <Text>WelcomeScreen</Text>
-        <Text>WelcomeScreen</Text>
-        <Text>WelcomeScreen</Text>
-        <Text>WelcomeScreen</Text>
-        <Text>WelcomeScreen</Text>
-        <Text>WelcomeScreen</Text>
-        <Text>WelcomeScreen</Text>
-        <Text>WelcomeScreen</Text>
-        <Text>WelcomeScreen</Text>
+      <View style={styles.container}>
+        <Slides
+          data={SLIDE_DATA}
+          onComplete={this.onSlidesComplete} />
       </View>
     )
   }
 }
 
 const styles = {
-  statusBarHeight: {
-    marginTop: Expo.Constants.statusBarHeight
+  container: {
+    flex: 1
   }
 }

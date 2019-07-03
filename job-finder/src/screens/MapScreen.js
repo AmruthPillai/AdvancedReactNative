@@ -4,7 +4,7 @@ import { Text, View } from 'react-native'
 export default class MapScreen extends Component {
   render() {
     return (
-      <View style={styles.statusBarHeight}>
+      <View style={styles.container}>
         <Text>MapScreen</Text>
         <Text>MapScreen</Text>
         <Text>MapScreen</Text>
@@ -21,7 +21,7 @@ export default class MapScreen extends Component {
 }
 
 const styles = {
-  statusBarHeight: {
+  container: {
     marginTop: Expo.Constants.statusBarHeight
   }
 }

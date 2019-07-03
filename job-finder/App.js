@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
+import { Provider } from 'react-redux'
+import store from './src/store'
 import {
   createAppContainer,
   createBottomTabNavigator,
   createStackNavigator
 } from 'react-navigation'
-
 import {
   AuthScreen,
   WelcomeScreen,
@@ -37,9 +38,11 @@ const AppContainer = createAppContainer(MainNavigator)
 export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <AppContainer />
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <AppContainer />
+        </View>
+      </Provider>
     )
   }
 }

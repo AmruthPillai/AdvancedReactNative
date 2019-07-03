@@ -4,7 +4,7 @@ import { Text, View } from 'react-native'
 export default class DeckScreen extends Component {
   render() {
     return (
-      <View style={styles.statusBarHeight}>
+      <View style={styles.container}>
         <Text>DeckScreen</Text>
         <Text>DeckScreen</Text>
         <Text>DeckScreen</Text>
@@ -21,7 +21,7 @@ export default class DeckScreen extends Component {
 }
 
 const styles = {
-  statusBarHeight: {
+  container: {
     marginTop: Expo.Constants.statusBarHeight
   }
 }

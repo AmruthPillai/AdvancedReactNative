@@ -12,6 +12,9 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "facebookAppId": "318033309072913",
+    "facebookDisplayName": "Job Finder",
+    "facebookScheme": "fb318033309072913",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -24,7 +27,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "ai.dhiyo.mobile"
+    },
+    "android": {
+      "package": "ai.dhiyo.mobile"
     }
   }
 }
