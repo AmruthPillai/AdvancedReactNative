@@ -1,19 +1,52 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react'
+import { View } from 'react-native'
+import {
+  createAppContainer,
+  createBottomTabNavigator,
+  createStackNavigator
+} from 'react-navigation'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+import {
+  AuthScreen,
+  WelcomeScreen,
+  MapScreen,
+  DeckScreen,
+  ReviewScreen,
+  SettingsScreen
+} from "./src/screens";
+
+const MainNavigator = createBottomTabNavigator({
+  welcome: { screen: WelcomeScreen },
+  auth: { screen: AuthScreen },
+  main: {
+    screen: createBottomTabNavigator({
+      map: { screen: MapScreen },
+      deck: { screen: DeckScreen },
+      review: {
+        screen: createStackNavigator({
+          review: { screen: ReviewScreen },
+          settings: { screen: SettingsScreen }
+        })
+      }
+    })
+  }
+})
+
+const AppContainer = createAppContainer(MainNavigator)
+
+export default class App extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <AppContainer />
+      </View>
+    )
+  }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    backgroundColor: '#FFF'
+  }
+}
